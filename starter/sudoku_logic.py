@@ -30,6 +30,20 @@ def is_safe(board, row, col, num):
                 return False
     return True
 
+def find_conflicts(board):
+    """Return coordinates of filled cells that violate Sudoku rules."""
+    conflicts = set()
+    for row in range(SIZE):
+        for col in range(SIZE):
+            value = board[row][col]
+            if value == EMPTY:
+                continue
+            board[row][col] = EMPTY
+            if not is_safe(board, row, col, value):
+                conflicts.add((row, col))
+            board[row][col] = value
+    return sorted(conflicts)
+
 def fill_board(board):
     """Fill a board with a valid randomized Sudoku solution."""
     for row in range(SIZE):

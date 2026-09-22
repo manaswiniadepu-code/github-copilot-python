@@ -13,10 +13,12 @@
     <option value="medium" selected>Medium</option>
     <option value="hard">Hard</option>
   </select>
+  <div id="timer" aria-live="polite">00:00</div>
   <div id="sudoku-board"></div>
   <div class="controls">
     <button id="new-game">New Game</button>
     <button id="check-solution">Check Solution</button>
+    <button id="hint">Hint (<span id="hint-count">0</span>)</button>
     <span id="message"></span>
   </div>
   <script src="/static/main.js"></script>

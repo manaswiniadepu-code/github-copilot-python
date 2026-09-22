@@ -5,6 +5,7 @@ from sudoku_logic import (
     count_solutions,
     deep_copy,
     fill_board,
+    find_conflicts,
     generate_puzzle_for_difficulty,
     generate_puzzle,
     is_safe,
@@ -39,6 +40,15 @@ def test_is_safe_rejects_row_column_and_box_conflicts():
     assert is_safe(board, 2, 4, 2) is False
     assert is_safe(board, 2, 2, 3) is False
     assert is_safe(board, 8, 8, 4) is True
+
+
+def test_find_conflicts_returns_all_cells_in_rule_conflicts():
+    board = create_empty_board()
+    board[0][0] = 5
+    board[0][1] = 5
+    board[1][0] = 5
+
+    assert find_conflicts(board) == [(0, 0), (0, 1), (1, 0)]
 
 
 def test_fill_board_creates_a_valid_solution():

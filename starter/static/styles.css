@@ -11,6 +11,13 @@ h1 {
     color: #333;
 }
 
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1976d2;
+    margin: 16px 0;
+}
+
 #sudoku-board {
     display: inline-block;
     margin: 30px auto;
@@ -48,6 +55,14 @@ h1 {
     background: #ffcdd2;
 }
 
+.sudoku-cell.conflict {
+    background: #ef9a9a;
+}
+
+.sudoku-cell.hint {
+    background: #fff3cd;
+}
+
 .sudoku-cell:nth-child(3),
 .sudoku-cell:nth-child(6) {
     border-right: 3px solid #333;
@@ -82,4 +97,16 @@ button:hover {
     margin-left: 20px;
     font-size: 16px;
     color: #d32f2f;
+}
+
+@media (max-width: 480px) {
+    .sudoku-cell {
+        width: 10vw;
+        height: 10vw;
+        font-size: 18px;
+    }
+
+    button {
+        margin: 5px 2px;
+    }
 }
