@@ -2,8 +2,10 @@ from sudoku_logic import (
     EMPTY,
     SIZE,
     create_empty_board,
+    count_solutions,
     deep_copy,
     fill_board,
+    generate_puzzle_for_difficulty,
     generate_puzzle,
     is_safe,
     remove_cells,
@@ -75,3 +77,19 @@ def test_generate_puzzle_returns_matching_puzzle_and_solution():
         for column in range(SIZE)
     )
     assert sum(cell != EMPTY for row in puzzle for cell in row) == 35
+    assert count_solutions(puzzle) == 1
+
+
+def test_difficulties_have_expected_clue_counts_and_unique_solutions():
+    expected_clues = {'easy': 45, 'medium': 35, 'hard': 25}
+
+    for difficulty, clues in expected_clues.items():
+        puzzle, solution = generate_puzzle_for_difficulty(difficulty)
+
+        assert sum(cell != EMPTY for row in puzzle for cell in row) == clues
+        assert count_solutions(puzzle) == 1
+        assert all(
+            puzzle[row][column] in (EMPTY, solution[row][column])
+            for row in range(SIZE)
+            for column in range(SIZE)
+        )
